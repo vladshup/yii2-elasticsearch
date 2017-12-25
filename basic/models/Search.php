@@ -1,11 +1,12 @@
 <?php
+ 
 namespace app\models;
  
 use app\models\Elastic;
  
 use yii\base\Model;
  
-use yii\elasticsearch\ActiveDataProvider;
+use yii\data\ActiveDataProvider;
  
 use yii\elasticsearch\Query;
  
@@ -33,7 +34,7 @@ class Search extends Elastic
  
        $queryBuilder = new QueryBuilder($db);
  
-       $match   = ['match' => ['_all' =>$searchs]];
+       $match   = ['match' => ['name' =>$searchs]];
  
        $query->query = $match;
  
@@ -45,10 +46,10 @@ class Search extends Elastic
  
            'query'      => $query,
  
-           'pagination' => ['pageSize' => 2],
+           'pagination' => ['pageSize' => 5],
  
        ]);
- 
+
        return $dataProvider;
  
    }

@@ -7,7 +7,7 @@ $this->title = 'Search';
 <h1>Search Result for <?php echo "<span class='label label-success'>" . $query . "</span>" ?></h1>
 <?php
 $result = $dataProvider->getModels();
- 
+
 foreach ($result as $key) {
  
     echo "<div class='row'>";
@@ -20,14 +20,15 @@ foreach ($result as $key) {
  
  
         
-if ($key == "article_name") {
+if ($key == "name") {
             echo "<div class='panel-heading'>" . $value . "</div>";
         }
-        if ($key == "article_content") {
-            echo "<div class='panel-body'>" . BaseStringHelper::truncateWords($value, 50, '...', true) . "<br>";
+        if ($key == "email") {
+            echo "<div class='panel-heading'>" . $value . "</div>";
+            //echo "<div class='panel-body'>" . BaseStringHelper::truncateWords($value, 50, '...', true) . "<br>";
         }
         if ($key == "category_name") {
-            echo "<span class='label label-success'>" . $value . "</span></div>";
+       //     echo "<span class='label label-success'>" . $value . "</span></div>";
         }
         
  
@@ -36,6 +37,13 @@ if ($key == "article_name") {
     echo "</div>";
     echo "</div>";
  
-}?>
+}
+
+
+echo \yii\widgets\LinkPager::widget([
+    'pagination'=>$dataProvider->pagination,
+]);
+
+?>
  
 </div>
